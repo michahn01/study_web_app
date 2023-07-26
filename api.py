@@ -25,7 +25,7 @@ class User(db.Model):
     __tablename__ = "User"
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     public_id = db.Column(db.String(50), unique=True)
-    name = db.Column(db.String(50))
+    username = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(80))
     admin = db.Column(db.Boolean)
 
@@ -83,12 +83,18 @@ def token_required(f):
 # -----------------------------------------------------------------------
         
 
+# REQUIRES: 
+#    * Must be logged in as a user with admin=True
+# MODIFIES:
+#    * N/A
+# EFFECTS:
+#    * Returns a list of all users in the database
 @app.route("/user", methods=["GET"])
 @token_required
 def get_all_users(current_user):
 
-    # if not current_user.admin:
-    #     return jsonify({"message": "Cannot perform that function. "})
+    if not current_user.admin:
+        return jsonify({"message": "Cannot perform that function. "})
 
     users = User.query.all()
     output = []
@@ -96,13 +102,19 @@ def get_all_users(current_user):
     for user in users:
         user_data = {}
         user_data["public_id"] = user.public_id
-        user_data["name"] = user.name
-        user_data["password"] = user.password
+        user_data["username"] = user.username
         user_data["admin"] = user.admin
         output.append(user_data)
     
     return jsonify({"users": output})
 
+
+# REQUIRES: 
+#    * Must be logged in as a user with admin=True
+# MODIFIES:
+#    * N/A
+# EFFECTS:
+#    * Returns information about the specified user from the database
 @app.route("/user/<public_id>", methods=["GET"])
 @token_required
 def get_one_user(current_user, public_id):
@@ -117,33 +129,50 @@ def get_one_user(current_user, public_id):
 
     user_data = {}
     user_data["public_id"] = user.public_id
-    user_data["name"] = user.name
-    user_data["password"] = user.password
+    user_data["username"] = user.username
     user_data["admin"] = user.admin
 
     return jsonify({"user": user_data})
 
-@app.route("/user", methods=["POST"])
-# @token_required
+
+
+# REQUIRES: 
+#    * Body of HTTP request must be in JSON format containing the following keys:
+#    * "username"
+#    * "password"
+# MODIFIES:
+#    * User table in database
+# EFFECTS:
+#    * Registers a new user account. 
+#    * Creates a new instance of User and adds it as a row to the User table in the database.
+@app.route("/register", methods=["POST"])
 def create_user():
 
-    # if not current_user.admin:
-    #     return jsonify({"message": "Cannot perform that function. "})
-
     data = request.get_json()
+
+    user = User.query.filter_by(username=data["username"]).first()
+    if not user == None: 
+        return jsonify({"message": "username already taken"})
+
     hashed_password = generate_password_hash(data["password"], method="pbkdf2:sha256:150000", salt_length=8)
-    new_user = User(public_id=str(uuid.uuid4()), name=data["name"], password=hashed_password, admin=False)
+    new_user = User(public_id=str(uuid.uuid4()), username=data["username"], password=hashed_password, admin=False)
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"message" : "New user created."})
 
 
+# REQUIRES: 
+#    * Must be logged in as a user with admin=True
+# MODIFIES:
+#    * .admin member of User with specified public_id
+# EFFECTS:
+#    * Promotes the specified user to admin status. 
 @app.route("/user/<public_id>", methods=["PUT"])
-# @token_required
+@token_required
 def promote_user(public_id):
 
-    # if not current_user.admin:
-    #     return jsonify({"message": "Cannot perform that function. "})
+    if not current_user.admin:
+        return jsonify({"message": "Cannot perform that function. "})
 
     user = User.query.filter_by(public_id=public_id).first()
 
@@ -155,11 +184,17 @@ def promote_user(public_id):
 
     return jsonify({"message": "The user has been promoted."})
 
+# REQUIRES: 
+#    * Must be logged in as a user with admin=True or as the user to be deleted
+# MODIFIES:
+#    * User table in database.
+# EFFECTS:
+#    * Deletes the user with the specified public_id.
 @app.route("/user/<public_id>", methods=["DELETE"])
 @token_required
 def delete_user(current_user, public_id): 
 
-    if not current_user.admin:
+    if not current_user.admin or not current_user.public_id == public_id:
         return jsonify({"message": "Cannot perform that function. "})
 
     user = User.query.filter_by(public_id=public_id).first()
@@ -171,13 +206,22 @@ def delete_user(current_user, public_id):
     db.session.commit()
     return jsonify({"message": "The user has been deleted."})
 
+# REQUIRES: 
+#    * HTTP request must use Basic Authorization to fill in username and password info.
+# MODIFIES:
+#    * N/A
+# EFFECTS:
+#    * Logins in user by returning a JSON web token 
+#    * Any route decorated with @token_requires needs 
+#      the provided JSON token in a header as the value
+#      of a key named "x-access-token"
 @app.route("/login")
 def login():
     auth = request.authorization
     if not auth or not auth.username or not auth.password:
         return make_response("Could not verify", 401, {"WWW-Authenticate": "Basic realm='Login required.'"})
     
-    user = User.query.filter_by(name=auth.username).first()
+    user = User.query.filter_by(username=auth.username).first()
 
     if not user:
         return make_response("Could not verify", 401, {"WWW-Authenticate": "Basic realm='Login required.'"})
