@@ -160,6 +160,15 @@ def create_user():
     db.session.commit()
     return jsonify({"message" : "New user created."})
 
+@app.route("/register/<username>", methods=["GET"])
+def check_username_availability(username):
+
+    user = User.query.filter_by(username=username).first()
+    if not user == None: 
+        return jsonify({"message": "username already taken"})
+
+    return jsonify({"message" : "username available."})
+
 
 # REQUIRES: 
 #    * Must be logged in as a user with admin=True
