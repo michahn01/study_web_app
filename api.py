@@ -5,8 +5,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 import datetime
 from functools import wraps
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app, resources={r'/*': {"origins": "*"}})
 
 app.config["SECRET_KEY"] = "thisissecret"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///study.db"
@@ -74,6 +76,10 @@ def token_required(f):
 
     return decorated
 
+@app.route("/login/verify", methods=["GET"])
+@token_required
+def check_login(current_user):
+    return jsonify({"message": "Token is valid."})
 
 
 # -----------------------------------------------------------------------
@@ -147,8 +153,10 @@ def get_one_user(current_user, public_id):
 #    * Creates a new instance of User and adds it as a row to the User table in the database.
 @app.route("/register", methods=["POST"])
 def create_user():
-
+    
     data = request.get_json()
+    if not ("username" in data and "password" in data):
+        return jsonify({"message": "Insufficient data. Have 'username' and 'password' in request body."})
 
     user = User.query.filter_by(username=data["username"]).first()
     if not user == None: 
@@ -162,7 +170,6 @@ def create_user():
 
 @app.route("/register/<username>", methods=["GET"])
 def check_username_availability(username):
-
     user = User.query.filter_by(username=username).first()
     if not user == None: 
         return jsonify({"message": "username already taken"})
@@ -260,7 +267,7 @@ def get_all_studysets(current_user):
         set_data["owner_user_id"] = set.owner_user_id
         sets.append(set_data)
 
-    return jsonify({"My StudySets": sets})
+    return jsonify({"StudySets": sets})
 
 @app.route("/my-study-sets", methods=["POST"])
 @token_required
