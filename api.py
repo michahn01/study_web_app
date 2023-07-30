@@ -279,7 +279,7 @@ def create_studyset(current_user):
     db.session.add(new_studyset) 
     db.session.commit() 
 
-    return jsonify({"message": "New StudySet created"})
+    return jsonify({"message": "New StudySet created", "studyset_id": f"{new_studyset.id}"})
 
 @app.route("/my-study-sets/<studyset_id>", methods=["DELETE"])
 @token_required

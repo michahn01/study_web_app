@@ -5,29 +5,60 @@ import "./css_animations/blob_decos.css"
 
 const MyStudySets = () => {
     const [isLoading, setLoading] = useState(true);
-    const [numCards, setNumCards] = useState(3)
+    const [numCards, setNumCards] = useState(3);
 
     const sendDataToServer = () => {
-        console.log("Posting Data")
         if (localStorage.getItem('token') === null) {
             setLoading(false);
         }
         else {
             fetch(`http://127.0.0.1:5000/my-study-sets`, {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Method': 'POST',
                     'x-access-token': localStorage.getItem('token')
-                }
+                },
+                body: JSON.stringify({
+                
+                    "studyset_name": document.querySelector(`.studyset_title_input`).value,
+                    
+                })
             })
-                .then((response) => {
-                    return response.json();
+            .then((response) => {
+                return response.json();
+            })
+            .catch((error) => {
+                console.error("Error: Could not initialize & create studyset.")
+            })
+            .then((data) => {
+                let termdefs = []
+                for (let index = 0; index < numCards; ++index) {
+                    let term = document.querySelector(`#creation_card${index}term`).value
+                    let def = document.querySelector(`#creation_card${index}def`).value
+                    if (!(term === "" && def === "")) {
+                        termdefs.push({"term": term, "definition": def})
+                    }
+                }
+                fetch(`http://127.0.0.1:5000/my-study-sets/${data["studyset_id"]}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-access-token': localStorage.getItem('token')
+                    },
+                    body: JSON.stringify({
+
+                        "new_termdefs": termdefs
+
+                    })
                 })
-                .then((data) => {
-                    setLoading(false)
-                })
+            })
+            .catch((error) => {
+                console.error("Error: Could not add terms to newly created studyset.")
+            })
         }
     }
+
+
 
     const get_text_area = (index, type) => {
         return (
