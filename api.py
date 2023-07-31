@@ -26,9 +26,9 @@ db = SQLAlchemy(app)
 class User(db.Model):
     __tablename__ = "User"
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    public_id = db.Column(db.String(50), unique=True)
-    username = db.Column(db.String(50), unique=True)
-    password = db.Column(db.String(80))
+    public_id = db.Column(db.String, unique=True)
+    username = db.Column(db.String, unique=True)
+    password = db.Column(db.String)
     admin = db.Column(db.Boolean)
 
     studysets = db.relationship('StudySet', backref='owner_user', lazy=True, cascade='all, delete-orphan')
@@ -36,7 +36,7 @@ class User(db.Model):
 class StudySet(db.Model):
     __tablename__ = "StudySet"
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    name = db.Column(db.String(200))
+    name = db.Column(db.String)
     owner_user_id = db.Column(db.Integer, db.ForeignKey('User.id', ondelete='CASCADE'), nullable=False)
     termdefs = db.relationship('TermDefinition', backref='owner_set', lazy=True, cascade='all, delete-orphan')
 
@@ -44,8 +44,8 @@ class TermDefinition(db.Model):
     __tablename__ = "TermDefinition"
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     owner_set_id = db.Column(db.Integer, db.ForeignKey('StudySet.id', ondelete='CASCADE'), nullable=False)
-    term = db.Column(db.String(500))
-    definition = db.Column(db.String(1000))
+    term = db.Column(db.String)
+    definition = db.Column(db.String)
     
 
 # -----------------------------------------------------------------------
