@@ -146,6 +146,7 @@ input {
     row-gap: 1em;
     width: 100%;
     align-items: flex-start;
+    white-space: normal;
 }
 
 .studySetButton {
@@ -158,6 +159,7 @@ input {
     font-size: 1.2em; 
     text-align: left;
     width: 60%;
+    word-wrap: break-word;
 }
 
 .create_studyset_page {
@@ -220,4 +222,14 @@ input {
     margin-bottom: 0px;
 }
 
+.back_to_studysets {
+    font-size: 1em;
+    color: inherit;
+    text-decoration: none;
+}
+.back_to_studysets:hover {
+    font-size: 1em;
+    color: inherit;
+    text-decoration: underline;
+}
 

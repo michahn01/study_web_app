@@ -15,16 +15,16 @@ const Navbar = () => {
                 </motion.div>
             </Link>
             
-            <Link className="navbar_option" to="/login">
-                <motion.div className="motiondiv" animate={{ opacity: location.pathname==="/login" ? 1 : .5}}>
-                    Logout
+            <Link className="navbar_option" to="/my-study-sets">
+                <motion.div className="motiondiv" animate={{ opacity: location.pathname==="/my-study-sets" ? 1 : .5}}>
+                    My Study Sets
                     <div className="underline"></div>
                 </motion.div>
             </Link>
 
-            <Link className="navbar_option" to="/register">
-                <motion.div animate={{ opacity: location.pathname==="/register" ? 1 : .5}}>
-                    Sign up
+            <Link className="navbar_option" to="/login">
+                <motion.div animate={{ opacity: location.pathname==="/login" ? 1 : .5}}>
+                    Log Out
                     <div className="underline"></div>
                 </motion.div>
             </Link>

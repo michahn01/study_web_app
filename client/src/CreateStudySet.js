@@ -1,13 +1,19 @@
 import "./style.css"
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useNavigate } from "react-router-dom"
 import "./css_animations/blob_decos.css"
 
 const MyStudySets = () => {
     const [isLoading, setLoading] = useState(true);
     const [numCards, setNumCards] = useState(3);
+    const navigate = useNavigate()
 
     const sendDataToServer = () => {
+        let studyset_name = document.querySelector(`.studyset_title_input`).value
+        if (studyset_name === "") {
+            studyset_name = "Untitled Study Set"
+        }
         if (localStorage.getItem('token') === null) {
             setLoading(false);
         }
@@ -20,7 +26,7 @@ const MyStudySets = () => {
                 },
                 body: JSON.stringify({
                 
-                    "studyset_name": document.querySelector(`.studyset_title_input`).value,
+                    "studyset_name": studyset_name
                     
                 })
             })
