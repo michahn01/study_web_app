@@ -162,7 +162,7 @@ input {
     word-wrap: break-word;
 }
 
-.create_studyset_page {
+.flush_left_column_page {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;

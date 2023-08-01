@@ -115,7 +115,7 @@ const MyStudySets = () => {
     return (
         <>
         <Navbar logged_in={true} />
-        <div className="create_studyset_page">
+        <div className="flush_left_column_page">
             
 
             <div style={{

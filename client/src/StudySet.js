@@ -9,7 +9,7 @@ const StudySet = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [ loading, setLoading ] = useState(true);
-    const [ termDefs, setTermDefs] = useState([]);
+    const [ studySet, setStudySet] = useState({});
     const [ studySetFound, setStudySetFound ] = useState(true);
     const path_parts = location.pathname.split('/').filter(item => item !== '');
 
@@ -45,7 +45,7 @@ const StudySet = () => {
                 }
                 else {
                     setStudySetFound(true);
-                    setTermDefs(data["Terms in StudySet"])
+                    setStudySet(data)
                 }
             })
         }
@@ -68,7 +68,8 @@ const StudySet = () => {
     return (
         <>
         <Navbar logged_in={true} />
-        <div className="page_content">
+        <div className="flush_left_column_page">
+            <h1></h1>
         </div>
         </>
     )
