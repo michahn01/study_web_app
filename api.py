@@ -287,9 +287,14 @@ def delete_studyset(current_user, studyset_id):
 
     data = request.get_json()
 
+    try:
+        study_set_id = int(study_set_id)
+    except:
+        return jsonify({"message": "No StudySet found."})
+
     studyset = None
     for set in current_user.studysets:
-        if set.id == int(study_set_id):
+        if set.id == study_set_id:
             studyset = set
             break
 
@@ -307,9 +312,14 @@ def modify_studyset(current_user, studyset_id):
 
     data = request.get_json()
 
+    try:
+        study_set_id = int(study_set_id)
+    except:
+        return jsonify({"message": "No StudySet found."})
+
     studyset = None
     for set in current_user.studysets:
-        if set.id == int(study_set_id):
+        if set.id == study_set_id:
             studyset = set
             break
 
@@ -333,9 +343,15 @@ def modify_studyset(current_user, studyset_id):
 @app.route("/my-study-sets/<study_set_id>", methods=["GET"])
 @token_required
 def get_all_termdefs(current_user, study_set_id):
+
+    try:
+        study_set_id = int(study_set_id)
+    except:
+        return jsonify({"message": "No StudySet found."})
+
     studyset = None
     for set in current_user.studysets:
-        if set.id == int(study_set_id):
+        if set.id == study_set_id:
             studyset = set
             break
 
@@ -356,9 +372,14 @@ def get_all_termdefs(current_user, study_set_id):
 @token_required
 def create_termdef(current_user, study_set_id):
 
+    try:
+        study_set_id = int(study_set_id)
+    except:
+        return jsonify({"message": "No StudySet found."})
+
     studyset = None
     for set in current_user.studysets:
-        if set.id == int(study_set_id):
+        if set.id == study_set_id:
             studyset = set
             break
 
@@ -381,9 +402,14 @@ def create_termdef(current_user, study_set_id):
 @token_required
 def bulk_delete_termdefs(current_user, study_set_id):
 
+    try:
+        study_set_id = int(study_set_id)
+    except:
+        return jsonify({"message": "No StudySet found."})
+
     studyset = None
     for set in current_user.studysets:
-        if set.id == int(study_set_id):
+        if set.id == study_set_id:
             studyset = set
             break
 
@@ -405,9 +431,14 @@ def bulk_delete_termdefs(current_user, study_set_id):
 @token_required
 def delete_termdef(current_user, study_set_id, termdef_id):
 
+    try:
+        study_set_id = int(study_set_id)
+    except:
+        return jsonify({"message": "No StudySet found."})
+
     studyset = None
     for set in current_user.studysets:
-        if set.id == int(study_set_id):
+        if set.id == study_set_id:
             studyset = set
             break
 
@@ -436,9 +467,14 @@ def delete_termdef(current_user, study_set_id, termdef_id):
 @token_required
 def modify_termdef(current_user, study_set_id, termdef_id):
 
+    try:
+        study_set_id = int(study_set_id)
+    except:
+        return jsonify({"message": "No StudySet found."})
+
     studyset = None
     for set in current_user.studysets:
-        if set.id == int(study_set_id):
+        if set.id == study_set_id:
             studyset = set
             break
 
