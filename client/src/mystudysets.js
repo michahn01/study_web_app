@@ -2,6 +2,7 @@ import "./style.css"
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from "react-router-dom"
+import Navbar from "./Navbar.js"
 import "./css_animations/blob_decos.css"
 
 const MyStudySets = () => {
@@ -60,7 +61,7 @@ const MyStudySets = () => {
         return (
             <div className="studySetsBox">
                 {studySets.map((set) => (
-                    <motion.button className="studySetButton" key={set["name"]} whileHover={{scale: 1.035}}
+                    <motion.button className="studySetButton" key={set["id"]} whileHover={{scale: 1.035}}
                      onClick={() => {navigate(`/my-study-sets/study-set/${set["id"]}`)}}>
                         {set["name"]}
                     </motion.button>
@@ -70,6 +71,8 @@ const MyStudySets = () => {
     }
 
     return (
+        <>
+        <Navbar logged_in={true} />
         <div className="page_content">
             <div style={{paddingBottom: "1em",
                          borderBottom: "2px solid black",
@@ -86,6 +89,7 @@ const MyStudySets = () => {
             </div>
             <UserStudySets />
         </div>
+        </>
     )
 }
 

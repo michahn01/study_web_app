@@ -3,7 +3,6 @@ import Home from "./Home.js";
 import Login from "./Login.js";
 import Register from "./Register.js"
 import MyStudySets from "./MyStudySets.js"
-import Navbar from "./Navbar.js"
 import CreateStudySet from "./CreateStudySet.js"
 import ProtectedRoutes from "./protected_routes.js";
 import StudySet from "./StudySet.js";
@@ -13,7 +12,6 @@ function App() {
   return (
     <Router>
     <div className="App">
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/login" element={<Login />}></Route>

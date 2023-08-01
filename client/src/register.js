@@ -2,6 +2,7 @@ import "./style.css"
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"
+import Navbar from "./Navbar.js"
 
 
 const Register = () => {
@@ -162,6 +163,8 @@ const Register = () => {
     }
 
     return (
+        <>
+        <Navbar />
         <div className="page_content">
 
             <h1>Create an account to get started.</h1>
@@ -206,6 +209,7 @@ const Register = () => {
             </div>
 
         </div>
+        </>
     )
 }
 

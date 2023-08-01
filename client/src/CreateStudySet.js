@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from "react-router-dom"
 import "./css_animations/blob_decos.css"
+import Navbar from "./Navbar.js"
 
 const MyStudySets = () => {
     const [isLoading, setLoading] = useState(true);
@@ -112,7 +113,10 @@ const MyStudySets = () => {
     }
 
     return (
+        <>
+        <Navbar logged_in={true} />
         <div className="create_studyset_page">
+            
 
             <div style={{
                 width: "100%", display: "flex", flexDirection: "row",
@@ -153,6 +157,7 @@ const MyStudySets = () => {
 
 
         </div>
+        </>
     )
 }
 

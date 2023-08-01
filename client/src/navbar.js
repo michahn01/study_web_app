@@ -3,13 +3,14 @@ import { motion } from "framer-motion";
 
 import "./navbar.css";
 
-const Navbar = () => {
+const Navbar = ({logged_in = false}) => {
     const location = useLocation();
+    const path_parts = location.pathname.split('/').filter(item => item !== '');
 
-    if (["/my-study-sets", "/create-study-set"].includes(location.pathname)) {
+    if (logged_in) {
         return (
             <div className="topnav">
-            <Link id="navbar_title" to="/">
+            <Link id="navbar_title" to="/home">
                 <motion.div whileHover={{scale: 1.3}}>
                  StudyCards
                 </motion.div>
@@ -28,7 +29,7 @@ const Navbar = () => {
                     <div className="underline"></div>
                 </motion.div>
             </Link>
-        </div>
+            </div>
         )
     }
     return (

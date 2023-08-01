@@ -1,7 +1,8 @@
 import "./style.css"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import Navbar from "./Navbar.js"
 
 const Login = (props) => {
     const [ userName, setUserName ] = useState("");
@@ -77,6 +78,8 @@ const Login = (props) => {
     }
 
     return (
+        <>
+        <Navbar />
         <div className="page_content">
             <h1>Welcome back!</h1>
             <div id="login_box">
@@ -95,6 +98,7 @@ const Login = (props) => {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 
