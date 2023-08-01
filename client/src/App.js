@@ -6,6 +6,8 @@ import MyStudySets from "./MyStudySets.js"
 import Navbar from "./Navbar.js"
 import CreateStudySet from "./CreateStudySet.js"
 import ProtectedRoutes from "./protected_routes.js";
+import StudySet from "./StudySet.js";
+import Error from "./Error.js";
 
 function App() {
   return (
@@ -18,9 +20,10 @@ function App() {
         <Route path="/register" element={<Register />}></Route>
         <Route element={<ProtectedRoutes />}>
           <Route path="/my-study-sets" element={<MyStudySets />}></Route>
-          <Route path="/my-study-sets/study-set/*" element={<MyStudySets />}></Route>
+          <Route path="/my-study-sets/study-set/*" element={<StudySet />}></Route>
           <Route path="/create-study-set" element={<CreateStudySet />}></Route>
         </Route>
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
     </Router>

@@ -60,7 +60,8 @@ const MyStudySets = () => {
         return (
             <div className="studySetsBox">
                 {studySets.map((set) => (
-                    <motion.button className="studySetButton" key={set["name"]} whileHover={{scale: 1.035}}>
+                    <motion.button className="studySetButton" key={set["name"]} whileHover={{scale: 1.035}}
+                     onClick={() => {navigate(`/my-study-sets/study-set/${set["id"]}`)}}>
                         {set["name"]}
                     </motion.button>
                 ))}
