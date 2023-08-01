@@ -18,6 +18,7 @@ function App() {
         <Route path="/register" element={<Register />}></Route>
         <Route element={<ProtectedRoutes />}>
           <Route path="/my-study-sets" element={<MyStudySets />}></Route>
+          <Route path="/my-study-sets/edit/study-set/*" element={<CreateStudySet editing_mode={true}/>}></Route>
           <Route path="/my-study-sets/study-set/*" element={<StudySet />}></Route>
           <Route path="/create-study-set" element={<CreateStudySet />}></Route>
         </Route>

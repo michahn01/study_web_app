@@ -35,6 +35,7 @@ const Register = () => {
             if (e.target.value !== "" && /^[a-zA-Z0-9_]+$/.test(e.target.value)) {
                 fetch(`http://127.0.0.1:5000/register/${e.target.value}`, {
                     method: 'GET',
+                    mode: 'cors',
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -111,6 +112,7 @@ const Register = () => {
     const handleAccountCreation = () => {
         fetch(`http://127.0.0.1:5000/register`, {
             method: 'POST',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -131,6 +133,7 @@ const Register = () => {
                 let encoded = window.btoa(`${userName}:${password}`);
                 let auth = 'Basic ' + encoded;
                 fetch(`http://127.0.0.1:5000/login`, {
+                    mode: 'cors',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': auth

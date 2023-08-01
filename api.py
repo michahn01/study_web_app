@@ -8,7 +8,7 @@ from functools import wraps
 from flask_cors import CORS
 
 app = Flask(__name__)
-cors = CORS(app, resources={r'/*': {"origins": "*"}})
+CORS(app, origins=["http://localhost:3000"])
 
 app.config["SECRET_KEY"] = "thisissecret"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///study.db"
@@ -366,7 +366,9 @@ def get_all_termdefs(current_user, study_set_id):
         data["definition"] = termdef.definition
         termdefs.append(data)
 
-    return jsonify({"Terms in StudySet": termdefs})
+    return jsonify({"message": "StudySet found.", 
+                    "Terms in StudySet": termdefs, 
+                    "StudySet Name": studyset.name})
 
 @app.route("/my-study-sets/<study_set_id>", methods=["POST"])
 @token_required

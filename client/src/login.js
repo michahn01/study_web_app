@@ -33,6 +33,7 @@ const Login = (props) => {
                 'Content-Type': 'application/json',
                 'Authorization': auth
             },
+            mode: 'cors'
         })
             .then((response) => {
                 if (!response.ok) {

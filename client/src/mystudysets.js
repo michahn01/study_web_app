@@ -15,7 +15,6 @@ const MyStudySets = () => {
     }, [])
 
     const retrieveData = () => {
-        console.log("Retrieving Data")
         if (localStorage.getItem('token') === null) {
             setLoading(false);
         }
@@ -25,7 +24,8 @@ const MyStudySets = () => {
                     'Content-Type': 'application/json',
                     'Method': 'GET',
                     'x-access-token': localStorage.getItem('token')
-                }
+                },
+                mode: 'cors',
             })
             .then((response) => {
                 return response.json();
@@ -79,7 +79,8 @@ const MyStudySets = () => {
                          width: "100%",
                          display: "flex",
                          flexDirection: "row",
-                         justifyContent: "space-between"
+                         justifyContent: "space-between",
+                         marginBottom: "1em"
                         }}>
                 <h1 style={{margin: "0"}}>Your Study Sets</h1>
                 <motion.button className="small_button" whileHover={{scale: 1.1}}

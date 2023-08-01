@@ -31,9 +31,10 @@ const StudySet = () => {
         }
         else {
             fetch(`http://127.0.0.1:5000/my-study-sets/${studyset_id}`, {
+                method: "GET",
+                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Method': 'GET',
                     'x-access-token': localStorage.getItem('token')
                 }
             })
@@ -118,7 +119,7 @@ const StudySet = () => {
                         }}>
                 <h1 style={{ "margin": "0", maxWidth: "70%", wordWrap: "break-word", whiteSpace: "normal"}}>{studySetName}</h1>
                 <motion.button className="small_button" whileHover={{scale: 1.1}} style={{height: "2.5em", minWidth: "8em"}}
-                 onClick={() => {}}>
+                 onClick={() => {navigate(`/my-study-sets/edit/study-set/${studyset_id}`)}}>
                     Edit this set
                 </motion.button>
             </div>

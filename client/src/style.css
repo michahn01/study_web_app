@@ -233,3 +233,21 @@ input {
     text-decoration: underline;
 }
 
+.view_only_card {
+    width: 80%;
+    border-radius: 5px;
+    border: 2px solid rgb(5, 53, 150);
+    padding: 0.5em 1em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.view_only_card_sub_area{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.3em;
+    padding-left: 2em;
+    word-wrap: break-word;
+}
+
