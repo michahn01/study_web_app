@@ -29,10 +29,10 @@ const CreateStudySet = ({ editing_mode = true }) => {
             return
         }
         // set the ID of the set based on the frontend request path.
-        setStudySetID(path_parts[3]);
+        setStudySetID(path_parts[2]);
 
         // determine the term-definition pairs of the set by fetching them from the server.
-        fetch(`http://127.0.0.1:5000/my-study-sets/${path_parts[3]}`, {
+        fetch(`http://127.0.0.1:5000/my-study-sets/${path_parts[2]}`, {
             method: "GET",
             mode: "cors",
             headers: {

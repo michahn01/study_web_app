@@ -5,6 +5,24 @@ import { useNavigate, useLocation } from "react-router-dom"
 import Navbar from "./Navbar.js"
 import "./css_animations/blob_decos.css"
 
+
+const DeletePopup = ({ isVisible, onDelete, onCancel }) => {
+    if (!isVisible) return null;
+  
+    return (
+      <div className="popup-wrapper">
+        <div className="popup">
+          <h1>This action cannot be undone.</h1>
+          <p>You will never be able to access this set and its data. Are you sure you want to delete it?</p>
+          <div className="buttons">
+            <button className="delete-button" onClick={onDelete}>Yes, delete set</button>
+            <button className="cancel-button" onClick={onCancel}>Cancel</button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+  
 const StudySet = () => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -12,6 +30,7 @@ const StudySet = () => {
     const [ studySetName, setStudySetName] = useState("");
     const [ termDefs, setTermDefs] = useState([]);
     const [ studySetFound, setStudySetFound ] = useState(true);
+    const [ deletePopUpVisible, setDeletePopUpVisible ] = useState(false);
     const path_parts = location.pathname.split('/').filter(item => item !== '');
 
     if (path_parts[0] !== "my-study-sets") {
@@ -23,6 +42,35 @@ const StudySet = () => {
 
     const studyset_id = path_parts[2]
 
+
+    const handleDeleteStudySet = () => {
+        setDeletePopUpVisible(false);
+        fetch(`http://127.0.0.1:5000/my-study-sets/${studyset_id}`, {
+            method: "DELETE",
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': localStorage.getItem('token')
+            }
+        })
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            if (data.hasOwnProperty("message")) {
+                if (data["message"] !== "StudySet deleted") {
+                    throw new Error(data["message"])
+                }
+            }
+            setLoading(false)
+        })
+        .then(() => {
+            navigate("/my-study-sets")
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
 
     useEffect(() => {
         console.log("Retrieving Data")
@@ -68,7 +116,7 @@ const StudySet = () => {
         }
         return (
             <div className="studySetsBox" style={{alignItems: "center"}}>
-                <h2>Terms in this set</h2>
+                <h2 style={{margin: "0"}}>Terms in this set</h2>
                 {termDefs.map((termDef, index) => (
                     <div className="view_only_card" key={index}>
                         <div className="view_only_card_sub_area"
@@ -115,18 +163,32 @@ const StudySet = () => {
                          display: "flex",
                          flexDirection: "row",
                          justifyContent: "space-between",
-                         marginBottom: "2em"
+                         marginBottom: "1.5em",
+                         rowGap: "1em",
+                         flexWrap: "wrap"
                         }}>
                 <h1 style={{ "margin": "0", maxWidth: "70%", wordWrap: "break-word", whiteSpace: "normal"}}>{studySetName}</h1>
-                <motion.button className="small_button" whileHover={{scale: 1.1}} style={{height: "2.5em", minWidth: "8em"}}
-                 onClick={() => {navigate(`/my-study-sets/edit/study-set/${studyset_id}`)}}>
+
+                <div style={{height: "100%", display: "flex", flexDirection: "row", alignItems: "center", columnGap: "1em"}}>
+                <motion.img className="trashBinIcon" src="/trash-can.png" whileHover={{ scale: 1.1 }}
+                     onClick={() => {setDeletePopUpVisible(true)}}>
+                </motion.img>
+                <motion.button className="turqoise_button" whileHover={{scale: 1.05}} style={{minWidth: "7.2em"}}
+                 onClick={() => {navigate(`/my-study-sets/study-set/${studyset_id}/edit`)}}>
                     Edit this set
                 </motion.button>
+                <motion.button className="turqoise_button" whileHover={{scale: 1.05}} style={{minWidth: "7em"}}
+                 onClick={() => {navigate(`/my-study-sets/study-set/${studyset_id}/flashcards`)}}>
+                    Flashcards
+                </motion.button>
+                </div>
+
             </div>
             
             {getTermDefs()}
             
         </div>
+        <DeletePopup isVisible={deletePopUpVisible} onDelete={handleDeleteStudySet} onCancel={() => {setDeletePopUpVisible(false)}}/>
         </>
     )
 }

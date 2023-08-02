@@ -13,7 +13,7 @@
 }
 
 input { 
-    font-family: "Poppins"; 
+    font-family: 'Poppins', sans-serif;
 }
 
 
@@ -256,4 +256,82 @@ input {
     height: 20px;
     padding: 0px;
     margin: 0px 2px;
+}
+
+.popup-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .popup {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .popup h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .popup p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    
+  }
+  
+  .delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  }
+  
+  .delete-button:hover {
+    background-color: darkred;
+  }
+  
+  .cancel-button {
+    background-color: #8fa896;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  }
+  
+  .cancel-button:hover {
+    background-color: #7f9876;
+  }
+  
+  .turqoise_button {
+    padding: 0em 0.6em;
+    margin: 0;
+    background-color: white;
+    border: 3px solid rgb(5, 150, 133);
+    border-radius: 0.5em;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5em;
 }

@@ -285,12 +285,11 @@ def create_studyset(current_user):
 @token_required
 def delete_studyset(current_user, studyset_id):
 
-    data = request.get_json()
-
     try:
-        study_set_id = int(study_set_id)
+        study_set_id = int(studyset_id)
     except:
-        return jsonify({"message": "No StudySet found."})
+        return jsonify({"message": "StudySet ID could not be converted to integer.",
+                        "ID": study_set_id})
 
     studyset = None
     for set in current_user.studysets:

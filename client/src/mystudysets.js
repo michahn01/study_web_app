@@ -62,14 +62,10 @@ const MyStudySets = () => {
         return (
             <div className="studySetsBox">
                 {studySets.map((set) => (
-                    <div style={{width: "100%", display: "flex", alignItems: "center", columnGap: "5%"}}>
                     <motion.button className="studySetButton" key={set["id"]} whileHover={{scale: 1.035}}
                      onClick={() => {navigate(`/my-study-sets/study-set/${set["id"]}`)}}>
                         {set["name"]}
                     </motion.button>
-                    <motion.img className="trashBinIcon" src="/trash-can.png" whileHover={{ scale: 1.2 }}
-                     onClick={() => {}}></motion.img>
-                    </div>
                 ))}
             </div>
         )    
