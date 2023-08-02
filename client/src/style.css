@@ -198,7 +198,7 @@ input {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    column-gap: 3em;
+    column-gap: 3.5%;
 }
 
 
@@ -251,3 +251,9 @@ input {
     word-wrap: break-word;
 }
 
+.trashBinIcon {
+    width: 20px;
+    height: 20px;
+    padding: 0px;
+    margin: 0px 2px;
+}

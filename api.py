@@ -400,7 +400,7 @@ def create_termdef(current_user, study_set_id):
 
     return jsonify({"message": "New TermDef(s) created"})
 
-@app.route("/my-study-sets/<study_set_id>/all-termdefs", methods=["DELETE"])
+@app.route("/my-study-sets/<study_set_id>/all-contents", methods=["DELETE"])
 @token_required
 def bulk_delete_termdefs(current_user, study_set_id):
 
@@ -425,6 +425,40 @@ def bulk_delete_termdefs(current_user, study_set_id):
     db.session.commit() 
 
     return jsonify({"message": "All termdefs deleted"})
+
+
+@app.route("/my-study-sets/<study_set_id>/all-contents", methods=["PUT"])
+@token_required
+def bulk_edit(current_user, study_set_id):
+
+    try:
+        study_set_id = int(study_set_id)
+    except:
+        return jsonify({"message": "No StudySet found."})
+
+    studyset = None
+    for set in current_user.studysets:
+        if set.id == study_set_id:
+            studyset = set
+            break
+
+    if not studyset:
+        return jsonify({"message": "No StudySet found."})
+    
+    for termdef in studyset.termdefs:
+        db.session.delete(termdef)
+
+    data = request.get_json()
+    new_termdefs = data["new_termdefs"]
+    
+    for termdef in new_termdefs:
+        db.session.add(TermDefinition(term=termdef["term"], definition=termdef["definition"], owner_set=studyset))
+
+    studyset.name = data["new_name"]
+
+    db.session.commit() 
+
+    return jsonify({"message": "StudySet recreated in bulk"})
 
 
 
