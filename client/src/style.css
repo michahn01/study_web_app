@@ -12,7 +12,7 @@
     color: #141414;
 }
 
-input { 
+input {
     font-family: 'Poppins', sans-serif;
 }
 
@@ -23,6 +23,7 @@ input {
     border-radius: 30px 10px;
     margin-top: 5em;
 }
+
 #about_description {
     margin: 7em 7em;
 }
@@ -55,7 +56,8 @@ input {
     text-decoration: none;
     color: #141414;
 }
-#account_creation_form h2{
+
+#account_creation_form h2 {
     font-size: 1.8em;
 }
 
@@ -78,6 +80,7 @@ input {
     width: 18em;
     font-size: 1.3em;
 }
+
 #account_creation_form input:active {
     border: 3px solid #272727;
     color: #141414;
@@ -120,6 +123,7 @@ input {
     font-family: 'Poppins', sans-serif;
     font-size: 1.6em;
 }
+
 .special_button {
     margin-top: 2em;
     padding: 0.2em 1em;
@@ -130,6 +134,7 @@ input {
     font-family: 'Poppins', sans-serif;
     font-size: 1.6em;
 }
+
 .small_button {
     padding: 0.2em 1em;
     background-color: white;
@@ -156,7 +161,7 @@ input {
     border-radius: 0.5em;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
     font-family: 'Poppins', sans-serif;
-    font-size: 1.2em; 
+    font-size: 1.2em;
     text-align: left;
     width: 60%;
     word-wrap: break-word;
@@ -178,11 +183,12 @@ input {
 
 .studyset_title_input {
     width: 100%;
-    
+
     font-family: 'Poppins', sans-serif;
     padding: 3px 10px;
     font-size: 20px;
 }
+
 .studyset_title_input::placeholder {
     font-family: 'Poppins', sans-serif;
     font-size: 17px;
@@ -203,19 +209,24 @@ input {
 
 
 .auto-growing-textarea {
-    resize: none; /* Prevent users from manually resizing the textarea */
-    overflow-y: hidden; /* Hide vertical scrollbar */
-    min-height: 1em; /* Set a minimum height for the textarea */
-    font-size: 15px; /* Set the desired font size */
-    line-height: 1.5; /* Set the desired line height */
+    resize: none;
+    /* Prevent users from manually resizing the textarea */
+    overflow-y: hidden;
+    /* Hide vertical scrollbar */
+    min-height: 1em;
+    /* Set a minimum height for the textarea */
+    font-size: 15px;
+    /* Set the desired font size */
+    line-height: 1.5;
+    /* Set the desired line height */
     font-family: 'Poppins', sans-serif;
     border: 0px;
     border-bottom: 2px solid grey;
-    padding: 1px; 
+    padding: 1px;
     margin-bottom: 1px;
     padding: 0;
 }
-  
+
 .auto-growing-textarea:focus {
     outline: none;
     border-bottom: 3px solid rgb(255, 187, 0);
@@ -227,6 +238,7 @@ input {
     color: inherit;
     text-decoration: none;
 }
+
 .back_to_studysets:hover {
     font-size: 1em;
     color: inherit;
@@ -243,7 +255,7 @@ input {
     flex-wrap: wrap;
 }
 
-.view_only_card_sub_area{
+.view_only_card_sub_area {
     display: flex;
     flex-direction: column;
     row-gap: 0.3em;
@@ -270,34 +282,34 @@ input {
     justify-content: center;
     z-index: 1000;
     font-family: 'Poppins', sans-serif;
-  }
-  
-  .popup {
+}
+
+.popup {
     background-color: #ffffff;
     padding: 20px;
     text-align: center;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
-  
-  .popup h1 {
+}
+
+.popup h1 {
     font-size: 24px;
     margin-bottom: 15px;
-  }
-  
-  .popup p {
+}
+
+.popup p {
     font-size: 16px;
     margin-bottom: 20px;
-  }
-  
-  .buttons {
+}
+
+.buttons {
     display: flex;
     justify-content: center;
     gap: 10px;
-    
-  }
-  
-  .delete-button {
+
+}
+
+.delete-button {
     background-color: red;
     color: white;
     border: none;
@@ -305,13 +317,13 @@ input {
     cursor: pointer;
     transition: 0.3s;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-  }
-  
-  .delete-button:hover {
+}
+
+.delete-button:hover {
     background-color: darkred;
-  }
-  
-  .cancel-button {
+}
+
+.cancel-button {
     background-color: #8fa896;
     color: white;
     border: none;
@@ -319,13 +331,13 @@ input {
     cursor: pointer;
     transition: 0.3s;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-  }
-  
-  .cancel-button:hover {
+}
+
+.cancel-button:hover {
     background-color: #7f9876;
-  }
-  
-  .turqoise_button {
+}
+
+.turqoise_button {
     padding: 0em 0.6em;
     margin: 0;
     background-color: white;
@@ -335,3 +347,62 @@ input {
     font-family: 'Poppins', sans-serif;
     font-size: 1.5em;
 }
+
+.card_container {
+    perspective: 1000px;
+    width: 70%;
+    height: 30em;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.35s;
+    background-color: rgb(252, 252, 252);
+    border-radius: 10px;
+    /* border: 2px solid rgb(126, 126, 126); */
+    box-shadow: 0 0 5.5px 5.5px rgba(0, 0, 0, 0.3); 
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card_face {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 90%;
+    height: 90%;
+    backface-visibility: hidden;
+    white-space: normal;
+    word-wrap: break-word;
+    position: absolute;
+}
+
+.card_front {
+    transform: rotateX(0deg);
+}
+
+.card_back {
+    transform: rotateX(180deg) translateZ(1px);
+}
+
+
+
+
+.circle-button {
+    padding: 0.2em 1em;
+    margin: 0.7em;
+    background-color: white;
+    border: 3px solid rgb(5, 53, 150);
+    border-radius: 5em;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2em;
+}
+  
