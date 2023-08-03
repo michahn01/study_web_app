@@ -350,7 +350,7 @@ input {
 
 .card_container {
     perspective: 1000px;
-    width: 70%;
+    width: 50em;
     height: 30em;
 }
 
@@ -372,16 +372,19 @@ input {
 }
 
 .card_face {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    place-items: center;
     margin: 0;
+    padding: 0;
     width: 90%;
     height: 90%;
     backface-visibility: hidden;
-    white-space: normal;
-    word-wrap: break-word;
+
     position: absolute;
+    font-size: 20px;
+
+    overflow-wrap: anywhere;
+    overflow-y: scroll;
 }
 
 .card_front {

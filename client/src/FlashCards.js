@@ -16,7 +16,8 @@ const FlashCards = () => {
     const [ studySetID, setStudySetID ] = useState("");
     const [ indices, setIndices ] = useState([])
     const [ currentIndex, setCurrentIndex ] = useState(0)
-    const [cardPos, setCardPos] = useState(0);
+    const [ cardPos, setCardPos ] = useState(0);
+    const [ shuffleButtonText, setShuffleButtonText ] = useState("shuffle")
 
     const ProgressBar = ({ length, index }) => {
         const progressPercentage = (index / length) * 100;
@@ -48,18 +49,18 @@ const FlashCards = () => {
         };
     
         return (
-        <div 
-        className="card" 
-        onClick={handleFlip}
-        style={{ transform: `rotateX(${rotation}deg)` }}
-        >
-        <div className="card_face card_front">
-            {termDefs[currentIndex]["term"]}
-        </div>
-        <div className="card_face card_back">
-            {termDefs[currentIndex]["definition"]}
-        </div>
-        </div>
+            <div 
+            className="card" 
+            onClick={handleFlip}
+            style={{ transform: `rotateX(${rotation}deg)` }}
+            >
+                <div className="card_face card_front">
+                    {termDefs[indices[currentIndex]]["term"]}
+                </div>
+                <div className="card_face card_back">
+                    {termDefs[indices[currentIndex]]["definition"]}
+                </div>
+            </div>
         );
     }
 
@@ -128,6 +129,23 @@ const FlashCards = () => {
         setCardPos(x)
     }
 
+    const handleShuffle = () => {
+        if (shuffleButtonText === "unshuffle") {
+            setShuffleButtonText("shuffle")
+            setIndices(Array.from({ length: indices.length }, (_, index) => index))
+            // console.log(indices)
+            return
+        }
+        let shuffled = indices;
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        setIndices(shuffled);
+        console.log(indices)
+        setShuffleButtonText("unshuffle")
+    }
+
     if (loading) {
         return (
             <>
@@ -154,7 +172,25 @@ const FlashCards = () => {
     return (
         <>
             <Navbar logged_in={true} />
-            <div className="page_content" style={{marginTop: "8em"}}>
+
+            <div className="page_content" style={{marginTop: "7em"}}>
+
+            <div style={{paddingBottom: "1em",
+                         borderBottom: "2px solid black",
+                         width: "100%",
+                         display: "flex",
+                         flexDirection: "row",
+                         justifyContent: "space-between",
+                         marginBottom: "1.5em",
+                         rowGap: "1em",
+                         flexWrap: "wrap"
+                        }}>
+                <h1 style={{ "margin": "0", maxWidth: "70%", wordWrap: "break-word", whiteSpace: "normal"}}>{studySetName}</h1>
+
+                <div style={{height: "100%", display: "flex", flexDirection: "row", alignItems: "center", columnGap: "1em"}}>
+                </div>
+
+            </div>
 
             <motion.div
                 className="card_container"
@@ -167,17 +203,19 @@ const FlashCards = () => {
             </motion.div>
 
 
-            <div class="menu-bar">
-                <button class="left-button" onClick={() => {navigate(`/my-study-sets/study-set/${studySetID}`)}}>
+            <div className="menu-bar">
+                <button className="left-button" onClick={() => {navigate(`/my-study-sets/study-set/${studySetID}`)}}>
                     Back to Set</button>
-                <div class="center-buttons">
-                    <button class="center-button" onClick={() => {handleIndexChange(-1)}}>Prev</button>
-                    <button class="center-button" onClick={() => {handleIndexChange(1)}}>Next</button>
+                <div className="center-buttons">
+                    <button className="center-button" onClick={() => {handleIndexChange(-1)}}>Prev</button>
+                    <button className="center-button" onClick={() => {handleIndexChange(1)}}>Next</button>
                 </div>
-                <button class="right-button">Shuffle</button>
+                <button className="right-button" onClick={handleShuffle}>{shuffleButtonText}</button>
             </div>
 
                 <ProgressBar length={indices.length} index={currentIndex + 1} />
+                {currentIndex===0 ? <center style={{paddingTop: "1em", width: "100%", color: "green"}}>
+                Click the card to flip</center> : <></>}
             </div>
 
 
