@@ -152,6 +152,7 @@ input {
     font-size: 0.9em;
     text-decoration: none;
     color: #141414;
+    border-radius: 15px;
 }
 
 #account_creation_form h2 {
