@@ -10,9 +10,9 @@ const Navbar = ({logged_in = false}) => {
     if (logged_in) {
         return (
             <div className="topnav">
-            <Link id="navbar_title" to="/">
+            <Link id="navbar_title" to="/my-study-sets">
                 <motion.div whileHover={{scale: 1.3}}>
-                 StudyCards
+                    StudyCards
                 </motion.div>
             </Link>
             

@@ -1,28 +1,125 @@
-.main_content {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    row-gap: 3em;
-    padding-top: 5em;
+.body {
     font-family: 'Poppins', sans-serif;
     font-size: 0.9em;
     text-decoration: none;
     color: #141414;
 }
 
+
+.main_content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    row-gap: 3em;
+    column-gap: 5%;
+    padding-top: 8em;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    text-decoration: none;
+    color: #141414;
+}
+
+.homepage_left {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.homepage_right {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: flex-start;
+}
+
+.homepage_text {
+    width: 28em;
+}
+
+@keyframes gradient-border {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+.image-container {
+    width: 80%;
+    /* display: inline-block; */
+    background: linear-gradient(-60deg, #f3ec78, #af4261, #3bceac, #20b2e3);
+    background-size: 300% 300%;
+    padding: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    animation: gradient-border 6s linear infinite;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+
+}
+
+.image-container img {
+    width: 100%;
+    display: block;
+    border: 5px solid #fff;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    border-radius: 15px;
+    transition: transform 0.5s;
+}
+
+.get-started-button {
+    background-color: rgb(222, 36, 89);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 30px 2px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+.get-started-button:hover {
+    background-color: rgb(194, 0, 55);
+}
+
+
+.checkmarks-list {
+    list-style: none;
+    padding-left: 20px;
+    position: relative;
+    color: grey;
+}
+.checkmarks-list li::before {
+    content:"\2713";
+    position: absolute;
+    left: 0;
+}
+
+  
+
 input {
     font-family: 'Poppins', sans-serif;
 }
 
 
-#bookshelf {
-    width: 30em;
-    height: auto;
-    border-radius: 30px 10px;
-    margin-top: 5em;
-}
 
 #about_description {
     margin: 7em 7em;
@@ -178,7 +275,7 @@ input {
     text-decoration: none;
     color: #141414;
     row-gap: 0.5em;
-    margin: 8em 15%;
+    margin: 7em 20%;
 }
 
 .studyset_title_input {
