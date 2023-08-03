@@ -177,10 +177,11 @@ const StudySet = () => {
                  onClick={() => {navigate(`/my-study-sets/study-set/${studyset_id}/edit`)}}>
                     Edit this set
                 </motion.button>
+                {termDefs.length !== 0 ?
                 <motion.button className="turqoise_button" whileHover={{scale: 1.05}} style={{minWidth: "7em"}}
                  onClick={() => {navigate(`/my-study-sets/study-set/${studyset_id}/flashcards`)}}>
                     Flashcards
-                </motion.button>
+                </motion.button> : <></>}
                 </div>
 
             </div>

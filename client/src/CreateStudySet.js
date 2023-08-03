@@ -109,7 +109,7 @@ const CreateStudySet = ({ editing_mode = true }) => {
     // A state to keep track of the number of termsDefs (which will be referred to as 'cards' on
     // the frontend, because they're displayed as cards on the user screen) being created or
     // modified.
-    const [numCards, setNumCards] = useState(3);
+    const [numCards, setNumCards] = useState(editing_mode ? 0 : 3);
 
     // The indices of the terms that have been deleted by the user and won't be added to the database.
     // These are still counted in numCards, but they will be skipped when sending data to server.

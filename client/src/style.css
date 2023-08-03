@@ -395,7 +395,7 @@ input {
 
 
 
-.circle-button {
+.flashcard-button {
     padding: 0.2em 1em;
     margin: 0.7em;
     background-color: white;
@@ -406,3 +406,49 @@ input {
     font-size: 1.2em;
 }
   
+
+.flashcards_progress_bar {
+    width: 50%;
+    height: 20px;
+    background-color: rgb(218, 215, 215);
+}
+
+
+
+
+.menu-bar {
+    width: 65%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.5); /* Transparent background */
+    padding: 1em;
+}
+
+.left-button,
+.right-button,
+.center-button {
+    padding: 10px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for buttons */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.left-button,
+.right-button {
+    min-width: 15%;
+}
+
+.left-button:hover,
+.right-button:hover,
+.center-button:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+}
+
+.center-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between the two center buttons */
+}

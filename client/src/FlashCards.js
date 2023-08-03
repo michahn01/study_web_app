@@ -4,8 +4,8 @@ import { motion } from "framer-motion"
 import { useNavigate, useLocation } from "react-router-dom"
 import "./style.css"
 
-const FlashCards = () => {
 
+const FlashCards = () => {
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -17,6 +17,22 @@ const FlashCards = () => {
     const [ indices, setIndices ] = useState([])
     const [ currentIndex, setCurrentIndex ] = useState(0)
     const [cardPos, setCardPos] = useState(0);
+
+    const ProgressBar = ({ length, index }) => {
+        const progressPercentage = (index / length) * 100;
+        
+        return (
+            <div className="flashcards_progress_bar">
+            <div
+                style={{
+                width: `${progressPercentage}%`,
+                height: '100%',
+                backgroundColor: '#4caf50'
+                }}
+            />
+            </div>
+        );
+    };
 
 
     function Card({index=0}) {
@@ -83,6 +99,9 @@ const FlashCards = () => {
                     setStudySetFound(true);
                     setStudySetName(data["StudySet Name"])
                     setTermDefs(data["Terms in StudySet"])
+                    if (data["Terms in StudySet"].length === 0) {
+                        navigate(`/my-study-sets/study-set/${studyset_id}`)
+                    }
                     setIndices(Array.from({ length: data["Terms in StudySet"].length }, (_, index) => index))
                 }
             })
@@ -135,7 +154,8 @@ const FlashCards = () => {
     return (
         <>
             <Navbar logged_in={true} />
-            <div className="page_content">
+            <div className="page_content" style={{marginTop: "8em"}}>
+
             <motion.div
                 className="card_container"
                 style={{ opacity: (cardPos === 0) ? 1 : 0 }} // Set the opacity based on the showCard state
@@ -145,13 +165,22 @@ const FlashCards = () => {
             >
                 <Card />
             </motion.div>
-            <div>
-            <motion.button className="circle-button" whileHover={{scale: 1.1}} 
-            onClick={() => {handleIndexChange(-1)}}>Prev</motion.button>
-            <motion.button className="circle-button" whileHover={{scale: 1.1}} 
-            onClick={() => {handleIndexChange(1)}}>Next</motion.button>
+
+
+            <div class="menu-bar">
+                <button class="left-button" onClick={() => {navigate(`/my-study-sets/study-set/${studySetID}`)}}>
+                    Back to Set</button>
+                <div class="center-buttons">
+                    <button class="center-button" onClick={() => {handleIndexChange(-1)}}>Prev</button>
+                    <button class="center-button" onClick={() => {handleIndexChange(1)}}>Next</button>
+                </div>
+                <button class="right-button">Shuffle</button>
             </div>
-        </div>
+
+                <ProgressBar length={indices.length} index={currentIndex + 1} />
+            </div>
+
+
         </>
     ) 
 }
