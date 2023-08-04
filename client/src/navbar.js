@@ -52,7 +52,7 @@ const Navbar = ({logged_in = false}) => {
                 </motion.div>
             </Link>
 
-            <Link className="navbar_option" to="/register" style={{float: "right", paddingLeft: "1.7em"}}>
+            <Link className="navbar_option" to="/register" id="navbar_signup">
                 <motion.div animate={{ opacity: location.pathname==="/register" ? 1 : .5}}>
                     Sign up
                     <div className="underline"></div>

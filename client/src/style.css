@@ -217,6 +217,12 @@ input {
     font-size: 1.3em;
 }
 
+@media (max-width: 350px) {
+    #account_creation_form input {
+        font-size: 1.2em;
+    }
+}
+
 #account_creation_form input:active {
     border: 3px solid #272727;
     color: #141414;
