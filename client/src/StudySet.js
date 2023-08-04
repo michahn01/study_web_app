@@ -117,12 +117,10 @@ const StudySet = () => {
                 <h2 style={{margin: "0"}}>Terms in this set</h2>
                 {termDefs.map((termDef, index) => (
                     <div className="view_only_card" key={index}>
-                        <div className="view_only_card_sub_area"
-                             style={{width: "20%"}}>
+                        <div className="view_only_card_sub_area view_only_card_term_area">
                             {termDef["term"]}
                         </div>
-                        <div className="view_only_card_sub_area"
-                             style={{width: "60%", borderLeft: "2px solid grey"}}>
+                        <div className="view_only_card_sub_area view_only_card_def_area">
                             {termDef["definition"]}
                         </div>
                     </div>  
@@ -155,22 +153,16 @@ const StudySet = () => {
         <Navbar logged_in={true} />
         <div className="page_content">
 
-            <div style={{paddingBottom: "1em",
-                         borderBottom: "2px solid black",
-                         width: "100%",
-                         display: "flex",
-                         flexDirection: "row",
-                         justifyContent: "space-between",
-                         marginBottom: "1.5em",
-                         rowGap: "1em",
-                         flexWrap: "wrap"
-                        }}>
-                <h1 style={{ "margin": "0", maxWidth: "70%", wordWrap: "break-word", whiteSpace: "normal"}}>{studySetName}</h1>
+            <div className="content_header_bar">
+                <h1>{studySetName}</h1>
 
-                <div style={{height: "100%", display: "flex", flexDirection: "row", alignItems: "center", columnGap: "1em"}}>
+                <div style={{height: "100%", display: "flex", flexDirection: "row", flexWrap: "wrap", rowGap: "1em", alignItems: "center", columnGap: "1em"}}>
+                
                 <motion.img className="trashBinIcon" src="/trash-can.png" whileHover={{ scale: 1.1 }}
                      onClick={() => {setDeletePopUpVisible(true)}}>
                 </motion.img>
+
+                <div style={{height: "100%", display: "flex", flexDirection: "row", flexWrap: "wrap", rowGap: "1em", alignItems: "center", columnGap: "0.7em"}}>
                 <motion.button className="turqoise_button" whileHover={{scale: 1.05}} style={{minWidth: "7.2em"}}
                  onClick={() => {navigate(`/my-study-sets/study-set/${studyset_id}/edit`)}}>
                     Edit this set
@@ -180,6 +172,9 @@ const StudySet = () => {
                  onClick={() => {navigate(`/my-study-sets/study-set/${studyset_id}/flashcards`)}}>
                     Flashcards
                 </motion.button> : <></>}
+                </div>
+
+
                 </div>
 
             </div>

@@ -339,6 +339,19 @@ input {
     row-gap: 1em;
 }
 
+.content_header_bar h1 {
+    margin: 0; 
+    max-width: 70%; 
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+@media (max-width: 800px) {
+    .content_header_bar h1 {
+        max-width: 100%;
+    }
+}
+
 .studySetsBox {
     display: flex;
     flex-direction: column;
@@ -471,8 +484,32 @@ input {
     display: flex;
     flex-direction: column;
     row-gap: 0.3em;
-    padding-left: 2em;
     word-wrap: break-word;
+}
+
+.view_only_card_term_area {
+    width: 25%;
+    padding-right: 0.7em;
+}
+
+.view_only_card_def_area {
+    width: 65%;
+    border-left: 2px solid grey;
+    padding-left: 1.7em;
+}
+
+@media (max-width: 500px) {
+    .view_only_card_term_area {
+        width: 100%;
+        padding: 0.5em 0 1em 0;
+    }
+    
+    .view_only_card_def_area {
+        width: 100%;
+        border-left: 0px;
+        border-top: 2px solid grey;
+        padding: 1em 0 0.5em 0;
+    }
 }
 
 .trashBinIcon {
@@ -558,6 +595,12 @@ input {
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
     font-family: 'Poppins', sans-serif;
     font-size: 1.5em;
+}
+
+@media (max-width: 410px) {
+    .turqoise_button {
+        font-size: 1.4em;
+    }
 }
 
 .card_container {
