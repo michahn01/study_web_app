@@ -33,7 +33,7 @@ const Register = () => {
         }
         else {
             if (e.target.value !== "" && /^[a-zA-Z0-9_]+$/.test(e.target.value)) {
-                fetch(`http://127.0.0.1:5000/register/${e.target.value}`, {
+                fetch(`http://127.0.0.1:5000/username/${e.target.value}`, {
                     method: 'GET',
                     mode: 'cors',
                     headers: {
@@ -44,7 +44,6 @@ const Register = () => {
                         return res.json()
                     })
                     .then((data) => {
-                        console.log(data["message"])
                         if (data["message"] === "username already taken") {
                             setUserNameTextColor("red")
                             setUserNameText("Username already taken")
@@ -110,7 +109,7 @@ const Register = () => {
       }
 
     const handleAccountCreation = () => {
-        fetch(`http://127.0.0.1:5000/register`, {
+        fetch(`http://127.0.0.1:5000/user`, {
             method: 'POST',
             mode: 'cors',
             headers: {

@@ -23,7 +23,7 @@ const Home = () => {
                             <li>Supports CRUD features for flashcards and study sets.</li>
                             <li>Easy user registration and login using JSON web token (JWT) authentication.</li>
                         </ul>
-                        <button onClick={() => {navigate("/register")}} class="get-started-button">Get Started</button>
+                        <button onClick={() => {navigate("/register")}} className="get-started-button">Get Started</button>
                     </div>
                 </div>
                 <div className="homepage_right">

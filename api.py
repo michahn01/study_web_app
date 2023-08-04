@@ -151,7 +151,7 @@ def get_one_user(current_user, public_id):
 # EFFECTS:
 #    * Registers a new user account. 
 #    * Creates a new instance of User and adds it as a row to the User table in the database.
-@app.route("/register", methods=["POST"])
+@app.route("/user", methods=["POST"])
 def create_user():
     
     data = request.get_json()
@@ -168,7 +168,7 @@ def create_user():
     db.session.commit()
     return jsonify({"message" : "New user created."})
 
-@app.route("/register/<username>", methods=["GET"])
+@app.route("/username/<username>", methods=["GET"])
 def check_username_availability(username):
     user = User.query.filter_by(username=username).first()
     if not user == None: 
