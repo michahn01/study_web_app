@@ -45,7 +45,7 @@ const StudySet = () => {
 
     const handleDeleteStudySet = () => {
         setDeletePopUpVisible(false);
-        fetch(`http://127.0.0.1:5000/my-study-sets/${studyset_id}`, {
+        fetch(`http://127.0.0.1:5000/api/my-study-sets/${studyset_id}`, {
             method: "DELETE",
             mode: 'cors',
             headers: {
@@ -78,7 +78,7 @@ const StudySet = () => {
             setLoading(false);
         }
         else {
-            fetch(`http://127.0.0.1:5000/my-study-sets/${studyset_id}`, {
+            fetch(`http://127.0.0.1:5000/api/my-study-sets/${studyset_id}`, {
                 method: "GET",
                 mode: 'cors',
                 headers: {

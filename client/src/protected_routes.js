@@ -22,7 +22,7 @@ const ProtectedRoutes = () => {
         }
         else {
             // console.log("token found")
-            fetch(`http://127.0.0.1:5000/login/verify`, {
+            fetch(`http://127.0.0.1:5000/api/login/verify`, {
                 method: "GET",
                 mode: 'cors',
                 headers: {

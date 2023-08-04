@@ -28,7 +28,7 @@ const Login = (props) => {
     const loginToServer = () => {
         let encoded = window.btoa(`${userName}:${password}`);
         let auth = 'Basic ' + encoded;
-        fetch(`http://127.0.0.1:5000/login`, {
+        fetch(`http://127.0.0.1:5000/api/login`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': auth

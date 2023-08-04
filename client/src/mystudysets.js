@@ -20,7 +20,7 @@ const MyStudySets = () => {
             setLoading(false);
         }
         else {
-            fetch(`http://127.0.0.1:5000/my-study-sets`, {
+            fetch(`http://127.0.0.1:5000/api/my-study-sets`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Method': 'GET',

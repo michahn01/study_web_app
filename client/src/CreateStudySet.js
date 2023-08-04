@@ -32,7 +32,7 @@ const CreateStudySet = ({ editing_mode = true }) => {
         setStudySetID(path_parts[2]);
 
         // determine the term-definition pairs of the set by fetching them from the server.
-        fetch(`http://127.0.0.1:5000/my-study-sets/${path_parts[2]}`, {
+        fetch(`http://127.0.0.1:5000/api/my-study-sets/${path_parts[2]}`, {
             method: "GET",
             mode: "cors",
             headers: {
@@ -135,7 +135,7 @@ const CreateStudySet = ({ editing_mode = true }) => {
         // what to do if creating studyset for the first time
         if (!editing_mode) {
             // request to CREATE a new empty studyset
-            fetch(`http://127.0.0.1:5000/my-study-sets`, {
+            fetch(`http://127.0.0.1:5000/api/my-study-sets`, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
@@ -167,7 +167,7 @@ const CreateStudySet = ({ editing_mode = true }) => {
                     }
                 }
                 // request to POPULATE the created studyset
-                fetch(`http://127.0.0.1:5000/my-study-sets/${data["studyset_id"]}`, {
+                fetch(`http://127.0.0.1:5000/api/my-study-sets/${data["studyset_id"]}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -205,7 +205,7 @@ const CreateStudySet = ({ editing_mode = true }) => {
                 }
             }
             // bulk-edit the terms in the studyset
-            fetch(`http://127.0.0.1:5000/my-study-sets/${studyset_id}/all-contents`, {
+            fetch(`http://127.0.0.1:5000/api/my-study-sets/${studyset_id}/all-contents`, {
                 method: 'PUT',
                 mode: 'cors',
                 headers: {
