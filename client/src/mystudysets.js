@@ -74,16 +74,9 @@ const MyStudySets = () => {
         <>
         <Navbar logged_in={true} />
         <div className="page_content">
-            <div style={{paddingBottom: "1em",
-                         borderBottom: "2px solid black",
-                         width: "100%",
-                         display: "flex",
-                         flexDirection: "row",
-                         justifyContent: "space-between",
-                         marginBottom: "1em"
-                        }}>
+            <div className="content_header_bar">
                 <h1 style={{margin: "0"}}>Your Study Sets</h1>
-                <motion.button className="small_button" whileHover={{scale: 1.1}}
+                <motion.button className="small_button" id="create_study_set_button" whileHover={{scale: 1.05}}
                  onClick={handleCreateStudySet}>
                     Create a Study Set
                 </motion.button>

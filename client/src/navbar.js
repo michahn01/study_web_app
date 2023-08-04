@@ -16,7 +16,7 @@ const Navbar = ({logged_in = false}) => {
                 </motion.div>
             </Link>
 
-            <div>
+            <div className="navbar_option_cluster" id="navbar_option_cluster_logged_in">
             <Link className="navbar_option" to="/my-study-sets">
                 <motion.div className="motiondiv" animate={{ opacity: location.pathname==="/my-study-sets" ? 1 : .5}}>
                     My Study Sets
@@ -44,15 +44,15 @@ const Navbar = ({logged_in = false}) => {
                 </motion.div>
             </Link>
             
-            <div>
-            <Link className="navbar_option" to="/login" style={{float: "left"}}>
+            <div className="navbar_option_cluster">
+            <Link className="navbar_option" to="/login">
                 <motion.div className="motiondiv" animate={{ opacity: location.pathname==="/login" ? 1 : .5}}>
                     Login
                     <div className="underline"></div>
                 </motion.div>
             </Link>
 
-            <Link className="navbar_option" to="/register" id="navbar_signup">
+            <Link className="navbar_option" to="/register">
                 <motion.div animate={{ opacity: location.pathname==="/register" ? 1 : .5}}>
                     Sign up
                     <div className="underline"></div>

@@ -170,14 +170,26 @@ input {
     text-decoration: none;
     color: #141414;
     row-gap: 0.5em;
-    margin: 8em 0.15em;
+    margin: 8em 17%;
 }
 
-/* @media (max-width: 500px) {
+@media (max-width: 1300px) {
     .page_content {
-        margin: 
+        margin: 8em 15%;
     }
-} */
+}
+
+@media (max-width: 1000px) {
+    .page_content {
+        margin: 8em 8%;
+    }
+}
+
+@media (max-width: 600px) {
+    .page_content {
+        margin: 8em 3%;
+    }
+}
 
 #account_creation_form {
     display: flex;
@@ -315,6 +327,18 @@ input {
     font-size: 1.2em;
 }
 
+.content_header_bar {
+    padding-bottom: 1em;
+    border-bottom: 2px solid black;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    flex-wrap: wrap;
+    row-gap: 1em;
+}
+
 .studySetsBox {
     display: flex;
     flex-direction: column;
@@ -335,6 +359,24 @@ input {
     text-align: left;
     width: 60%;
     word-wrap: break-word;
+}
+
+@media (max-width: 900px) {
+    .studySetButton {
+        width: 90%;
+    }
+}
+
+@media (max-width: 700px) {
+    .studySetButton {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    #create_study_set_button {
+        width: 100%;
+    }
 }
 
 .flush_left_column_page {
