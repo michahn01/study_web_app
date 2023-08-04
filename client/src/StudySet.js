@@ -45,9 +45,8 @@ const StudySet = () => {
 
     const handleDeleteStudySet = () => {
         setDeletePopUpVisible(false);
-        fetch(`http://127.0.0.1:5000/api/my-study-sets/${studyset_id}`, {
+        fetch(`/api/my-study-sets/${studyset_id}`, {
             method: "DELETE",
-            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
                 'x-access-token': localStorage.getItem('token')
@@ -78,9 +77,8 @@ const StudySet = () => {
             setLoading(false);
         }
         else {
-            fetch(`http://127.0.0.1:5000/api/my-study-sets/${studyset_id}`, {
+            fetch(`/api/my-study-sets/${studyset_id}`, {
                 method: "GET",
-                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
                     'x-access-token': localStorage.getItem('token')

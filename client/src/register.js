@@ -33,9 +33,8 @@ const Register = () => {
         }
         else {
             if (e.target.value !== "" && /^[a-zA-Z0-9_]+$/.test(e.target.value)) {
-                fetch(`http://127.0.0.1:5000/api/username/${e.target.value}`, {
+                fetch(`/api/username/${e.target.value}`, {
                     method: 'GET',
-                    mode: 'cors',
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -109,9 +108,8 @@ const Register = () => {
       }
 
     const handleAccountCreation = () => {
-        fetch(`http://127.0.0.1:5000/api/user`, {
+        fetch(`/api/user`, {
             method: 'POST',
-            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -131,12 +129,11 @@ const Register = () => {
             .then((data) => {
                 let encoded = window.btoa(`${userName}:${password}`);
                 let auth = 'Basic ' + encoded;
-                fetch(`http://127.0.0.1:5000/api/login`, {
-                    mode: 'cors',
+                fetch(`/api/login`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': auth
-                    },
+                    }
                 })
                     .then((response) => {
                         if (!response.ok) {

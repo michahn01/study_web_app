@@ -20,13 +20,12 @@ const MyStudySets = () => {
             setLoading(false);
         }
         else {
-            fetch(`http://127.0.0.1:5000/api/my-study-sets`, {
+            fetch(`/api/my-study-sets`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Method': 'GET',
                     'x-access-token': localStorage.getItem('token')
-                },
-                mode: 'cors',
+                }
             })
             .then((response) => {
                 return response.json();

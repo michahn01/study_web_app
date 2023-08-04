@@ -22,9 +22,8 @@ const ProtectedRoutes = () => {
         }
         else {
             // console.log("token found")
-            fetch(`http://127.0.0.1:5000/api/login/verify`, {
+            fetch(`/api/login/verify`, {
                 method: "GET",
-                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
                     'x-access-token': localStorage.getItem('token')
