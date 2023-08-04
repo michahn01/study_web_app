@@ -93,9 +93,10 @@ const Login = (props) => {
                 >
                     Login
                 </motion.button>
-                <div style={{height: "1.5em", width: "20em", wordWrap: "break-word"}}>
-                <center><p style={{ fontSize: "1em", color: "red" }}>{instructions}</p></center>
-                </div>
+                <center style={{color: "red", fontSize: "15px", 
+                maxWidth: "200px", wordWrap: "break-word"}}>
+                {instructions}
+                </center>
             </div>
         </div>
         </>

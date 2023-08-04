@@ -170,8 +170,14 @@ input {
     text-decoration: none;
     color: #141414;
     row-gap: 0.5em;
-    margin: 8em 15%;
+    margin: 8em 0.15em;
 }
+
+/* @media (max-width: 500px) {
+    .page_content {
+        margin: 
+    }
+} */
 
 #account_creation_form {
     display: flex;
@@ -229,10 +235,38 @@ input {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 0em 3em 4.5em 3em;
+    padding: 0em 3% 2.5em 3%;
 
     box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+    font-size: 15px;
 }
+
+#login_box h2 {
+    padding: 1em 0; 
+    margin: 0;
+}
+
+@media (max-width: 400px) {
+    #login_box {
+        width: 85%;
+    }
+}
+
+@media (max-width: 380px) {
+    #login_box {
+        width: 90%;
+    }
+}
+
+@media (max-width: 350px) {
+    #login_box input{
+        font-size: 3vw;
+    }
+    #login_box {
+        width: 93%;
+    }
+}
+
 
 #login_box input {
     border: 3px solid #272727;
@@ -240,11 +274,11 @@ input {
     border-radius: 100em;
     padding-left: 0.5em;
     width: 13em;
-    font-size: 1.3em;
+    font-size: 20px;
 }
 
 #login_button {
-    margin-top: 2em;
+    margin: 2em 0em 1em 0em;
     padding: 0.2em 1em;
     background-color: white;
     border: 3px solid rgb(255, 115, 0);
