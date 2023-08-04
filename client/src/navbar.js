@@ -11,11 +11,12 @@ const Navbar = ({logged_in = false}) => {
         return (
             <div className="topnav">
             <Link id="navbar_title" to="/my-study-sets">
-                <motion.div whileHover={{scale: 1.3}}>
+                <motion.div whileHover={{scale: 1.2}}>
                     StudyCards
                 </motion.div>
             </Link>
-            
+
+            <div>
             <Link className="navbar_option" to="/my-study-sets">
                 <motion.div className="motiondiv" animate={{ opacity: location.pathname==="/my-study-sets" ? 1 : .5}}>
                     My Study Sets
@@ -30,29 +31,34 @@ const Navbar = ({logged_in = false}) => {
                 </motion.div>
             </Link>
             </div>
+
+
+            </div>
         )
     }
     return (
         <div className="topnav">
             <Link id="navbar_title" to="/">
-                <motion.div whileHover={{scale: 1.3}}>
+                <motion.div whileHover={{scale: 1.2}}>
                  StudyCards
                 </motion.div>
             </Link>
             
-            <Link className="navbar_option" to="/login">
+            <div>
+            <Link className="navbar_option" to="/login" style={{float: "left"}}>
                 <motion.div className="motiondiv" animate={{ opacity: location.pathname==="/login" ? 1 : .5}}>
                     Login
                     <div className="underline"></div>
                 </motion.div>
             </Link>
 
-            <Link className="navbar_option" to="/register">
+            <Link className="navbar_option" to="/register" style={{float: "right", paddingLeft: "1.7em"}}>
                 <motion.div animate={{ opacity: location.pathname==="/register" ? 1 : .5}}>
                     Sign up
                     <div className="underline"></div>
                 </motion.div>
             </Link>
+            </div>
         </div>
     )
 }

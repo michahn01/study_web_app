@@ -20,7 +20,8 @@ const Home = () => {
                             <li>RESTful API built using Python's Flask library.</li>
                             <li>SQLite for database.</li>
                             <li>Front end built with React.</li>
-                            <li>Supports CRUD features for flashcards and study sets.</li>
+                            <li>Hosted on AWS, with Gunicorn serving the backend and NGINX 
+                                handling reverse proxy.</li>
                             <li>Easy user registration and login using JSON web token (JWT) authentication.</li>
                         </ul>
                         <button onClick={() => {navigate("/register")}} className="get-started-button">Get Started</button>
