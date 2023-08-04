@@ -76,7 +76,7 @@ def token_required(f):
 
     return decorated
 
-@app.route("/login/verify", methods=["GET"])
+@app.route("/api/login/verify", methods=["GET"])
 @token_required
 def check_login(current_user):
     return jsonify({"message": "Token is valid."})
@@ -95,7 +95,7 @@ def check_login(current_user):
 #    * N/A
 # EFFECTS:
 #    * Returns a list of all users in the database
-@app.route("/user", methods=["GET"])
+@app.route("/api/user", methods=["GET"])
 @token_required
 def get_all_users(current_user):
 
@@ -121,7 +121,7 @@ def get_all_users(current_user):
 #    * N/A
 # EFFECTS:
 #    * Returns information about the specified user from the database
-@app.route("/user/<public_id>", methods=["GET"])
+@app.route("/api/user/<public_id>", methods=["GET"])
 @token_required
 def get_one_user(current_user, public_id):
 
@@ -151,7 +151,7 @@ def get_one_user(current_user, public_id):
 # EFFECTS:
 #    * Registers a new user account. 
 #    * Creates a new instance of User and adds it as a row to the User table in the database.
-@app.route("/user", methods=["POST"])
+@app.route("/api/user", methods=["POST"])
 def create_user():
     
     data = request.get_json()
@@ -168,7 +168,7 @@ def create_user():
     db.session.commit()
     return jsonify({"message" : "New user created."})
 
-@app.route("/username/<username>", methods=["GET"])
+@app.route("/api/username/<username>", methods=["GET"])
 def check_username_availability(username):
     user = User.query.filter_by(username=username).first()
     if not user == None: 
@@ -183,7 +183,7 @@ def check_username_availability(username):
 #    * .admin member of User with specified public_id
 # EFFECTS:
 #    * Promotes the specified user to admin status. 
-@app.route("/user/<public_id>", methods=["PUT"])
+@app.route("/api/user/<public_id>", methods=["PUT"])
 @token_required
 def promote_user(public_id):
 
@@ -206,7 +206,7 @@ def promote_user(public_id):
 #    * User table in database.
 # EFFECTS:
 #    * Deletes the user with the specified public_id.
-@app.route("/user/<public_id>", methods=["DELETE"])
+@app.route("/api/user/<public_id>", methods=["DELETE"])
 @token_required
 def delete_user(current_user, public_id): 
 
@@ -231,7 +231,7 @@ def delete_user(current_user, public_id):
 #    * Any route decorated with @token_requires needs 
 #      the provided JSON token in a header as the value
 #      of a key named "x-access-token"
-@app.route("/login")
+@app.route("/api/login")
 def login():
     auth = request.authorization
     if not auth or not auth.username or not auth.password:
@@ -256,7 +256,7 @@ def login():
 # -----------------------------------------------------------------------
 # -----------------------------------------------------------------------
 
-@app.route("/my-study-sets", methods=["GET"])
+@app.route("/api/my-study-sets", methods=["GET"])
 @token_required
 def get_all_studysets(current_user):
     sets = []
@@ -269,7 +269,7 @@ def get_all_studysets(current_user):
 
     return jsonify({"StudySets": sets})
 
-@app.route("/my-study-sets", methods=["POST"])
+@app.route("/api/my-study-sets", methods=["POST"])
 @token_required
 def create_studyset(current_user):
     data = request.get_json()
@@ -281,7 +281,7 @@ def create_studyset(current_user):
 
     return jsonify({"message": "New StudySet created", "studyset_id": f"{new_studyset.id}"})
 
-@app.route("/my-study-sets/<studyset_id>", methods=["DELETE"])
+@app.route("/api/my-study-sets/<studyset_id>", methods=["DELETE"])
 @token_required
 def delete_studyset(current_user, studyset_id):
 
@@ -305,7 +305,7 @@ def delete_studyset(current_user, studyset_id):
 
     return jsonify({"message": "StudySet deleted"})
 
-@app.route("/my-study-sets/<studyset_id>", methods=["PUT"])
+@app.route("/api/my-study-sets/<studyset_id>", methods=["PUT"])
 @token_required
 def modify_studyset(current_user, studyset_id):
 
@@ -339,7 +339,7 @@ def modify_studyset(current_user, studyset_id):
 # -----------------------------------------------------------------------
 # -----------------------------------------------------------------------
 
-@app.route("/my-study-sets/<study_set_id>", methods=["GET"])
+@app.route("/api/my-study-sets/<study_set_id>", methods=["GET"])
 @token_required
 def get_all_termdefs(current_user, study_set_id):
 
@@ -369,7 +369,7 @@ def get_all_termdefs(current_user, study_set_id):
                     "Terms in StudySet": termdefs, 
                     "StudySet Name": studyset.name})
 
-@app.route("/my-study-sets/<study_set_id>", methods=["POST"])
+@app.route("/api/my-study-sets/<study_set_id>", methods=["POST"])
 @token_required
 def create_termdef(current_user, study_set_id):
 
@@ -399,7 +399,7 @@ def create_termdef(current_user, study_set_id):
 
     return jsonify({"message": "New TermDef(s) created"})
 
-@app.route("/my-study-sets/<study_set_id>/all-contents", methods=["DELETE"])
+@app.route("/api/my-study-sets/<study_set_id>/all-contents", methods=["DELETE"])
 @token_required
 def bulk_delete_termdefs(current_user, study_set_id):
 
@@ -426,7 +426,7 @@ def bulk_delete_termdefs(current_user, study_set_id):
     return jsonify({"message": "All termdefs deleted"})
 
 
-@app.route("/my-study-sets/<study_set_id>/all-contents", methods=["PUT"])
+@app.route("/api/my-study-sets/<study_set_id>/all-contents", methods=["PUT"])
 @token_required
 def bulk_edit(current_user, study_set_id):
 
@@ -462,7 +462,7 @@ def bulk_edit(current_user, study_set_id):
 
 
 
-@app.route("/my-study-sets/<study_set_id>/<termdef_id>", methods=["DELETE"])
+@app.route("/api/my-study-sets/<study_set_id>/<termdef_id>", methods=["DELETE"])
 @token_required
 def delete_termdef(current_user, study_set_id, termdef_id):
 
@@ -498,7 +498,7 @@ def delete_termdef(current_user, study_set_id, termdef_id):
 
     return jsonify({"message": "TermDef deleted"})
 
-@app.route("/my-study-sets/<study_set_id>/<termdef_id>", methods=["PUT"])
+@app.route("/api/my-study-sets/<study_set_id>/<termdef_id>", methods=["PUT"])
 @token_required
 def modify_termdef(current_user, study_set_id, termdef_id):
 
