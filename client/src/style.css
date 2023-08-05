@@ -627,8 +627,24 @@ input {
 
 .card_container {
     perspective: 1000px;
-    width: 50em;
-    height: 30em;
+    width: 85%;
+    height: 500px;
+}
+
+@media (max-width: 1300px) {
+    .card_container {
+        width: 90%;
+    }
+}
+@media (max-width: 900px) {
+    .card_container {
+        width: 95%;
+    }
+}
+@media (max-width: 600px) {
+    .card_container {
+        height: 400px;
+    }
 }
 
 .card {
@@ -731,4 +747,18 @@ input {
     display: flex;
     justify-content: center;
     gap: 10px; /* Space between the two center buttons */
+}
+
+@media (max-width: 550px) {
+    .menu-bar {
+        margin-top: 10px;
+        flex-direction: column-reverse;
+        row-gap: 1em;
+    }
+    .center-button {
+        font-size: 25px;
+        width: 100px;
+        margin-bottom: 20px;
+    }
+
 }

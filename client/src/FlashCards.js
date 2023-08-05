@@ -174,16 +174,7 @@ const FlashCards = () => {
 
             <div className="page_content" style={{marginTop: "7em"}}>
 
-            <div style={{paddingBottom: "1em",
-                         borderBottom: "2px solid black",
-                         width: "100%",
-                         display: "flex",
-                         flexDirection: "row",
-                         justifyContent: "space-between",
-                         marginBottom: "1.5em",
-                         rowGap: "1em",
-                         flexWrap: "wrap"
-                        }}>
+            <div className="content_header_bar">
                 <h1 style={{ "margin": "0", maxWidth: "70%", wordWrap: "break-word", whiteSpace: "normal"}}>{studySetName}</h1>
 
                 <div style={{height: "100%", display: "flex", flexDirection: "row", alignItems: "center", columnGap: "1em"}}>
