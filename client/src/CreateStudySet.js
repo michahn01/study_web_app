@@ -264,16 +264,19 @@ const CreateStudySet = ({ editing_mode = true }) => {
             items.push(
                 <div className="creation_card" key={index}>
                     <div style={{ marginBottom: "1em", width: "100%" }}>{display_index}</div>
-                    <div style={{ display: "flex", flexDirection: "column", rowGap: "0.3em", width: "40%" }}>
+                    <div className="creation_card_sub_area">
                         {get_text_area(index, "term")}
                         TERM
                     </div>
-                    <div style={{ display: "flex", flexDirection: "column", rowGap: "0.3em", width: "40%" }}>
+                    <div className="creation_card_sub_area">
                         {get_text_area(index, "def")}
                         DEFINITION
                     </div>
+
+                    <div id="creation_card_trash_icon_area">
                     <motion.img className="trashBinIcon" src="/trash-can.png" whileHover={{ scale: 1.1 }}
                      onClick={() => {deleteCard(index)}}></motion.img>
+                    </div>
                 </div>
             )
             display_index = display_index + 1;
@@ -306,26 +309,22 @@ const CreateStudySet = ({ editing_mode = true }) => {
     return (
         <>
             <Navbar logged_in={true} />
-            <div className="flush_left_column_page">
+            <div className="page_content">
 
 
-                <div style={{
-                    width: "100%", display: "flex", flexDirection: "row",
-                    alignItems: "center", justifyContent: "space-between",
-                    marginBottom: "1em"
-                }}>
+                <div className="content_header_bar">
                     <h1 style={{ margin: "0" }}>{editing_mode ? "Edit Study Set" : "Create a New Study Set"}</h1>
 
                     <motion.button className="small_button" whileHover={{ scale: 1.1 }}
-                        onClick={sendDataToServer}>
+                        onClick={sendDataToServer} style={{maxHeight: "45px"}}>
                         {editing_mode ? "Done" : "Create"}
                     </motion.button>
                 </div>
-                <h3 style={{ "margin": "0" }}>Title</h3>
+                <h3 style={{ width: "100%", margin: "0" }}>Title</h3>
                 <input type="text" className="studyset_title_input"
                     placeholder="Enter a title for your study set" />
 
-                <h3 style={{ "margin": "0", "marginTop": "1.5em" }}>Cards</h3>
+                <h3 style={{ width: "100%", margin: "0", marginTop: "1.5em" }}>Cards</h3>
                 <div style={{
                     paddingBottom: "1em",
                     width: "100%",
