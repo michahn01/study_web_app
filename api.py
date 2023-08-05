@@ -5,13 +5,14 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 import datetime
 from functools import wraps
-from flask_cors import CORS
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:3000"])
 
-app.config["SECRET_KEY"] = "thisissecret"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///study.db"
+load_dotenv()
+app.config["SECRET_KEY"] = os.getenv("STUDYCARDS_SECRET_KEY")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("STUDYCARDS_SQLITE_DB_PATH") 
 
 db = SQLAlchemy(app)
 
