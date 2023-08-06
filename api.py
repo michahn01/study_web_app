@@ -12,7 +12,14 @@ app = Flask(__name__)
 
 load_dotenv()
 app.config["SECRET_KEY"] = os.getenv("STUDYCARDS_SECRET_KEY")
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("STUDYCARDS_SQLITE_DB_PATH") 
+
+POSTGRES_URL = os.getenv("POSTGRES_URL")
+POSTGRES_USER = os.getenv("POSTGRES_USER")
+POSTGRES_PW = os.getenv("POSTGRES_PW")
+POSTGRES_DB = os.getenv("POSTGRES_DB")
+
+app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PW}@{POSTGRES_URL}/{POSTGRES_DB}"
+
 
 db = SQLAlchemy(app)
 
