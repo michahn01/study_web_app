@@ -11,12 +11,16 @@ import os
 app = Flask(__name__)
 
 load_dotenv()
+
+# Obfuscation of sensitive information using environment variables. 
 app.config["SECRET_KEY"] = os.getenv("STUDYCARDS_SECRET_KEY")
 
 POSTGRES_URL = os.getenv("POSTGRES_URL")
 POSTGRES_USER = os.getenv("POSTGRES_USER")
 POSTGRES_PW = os.getenv("POSTGRES_PW")
 POSTGRES_DB = os.getenv("POSTGRES_DB")
+JWT_DECODE_ALG = os.getenv("JWT_DECODE_ALG")
+PASSWORD_HASH_METHOD = os.getenv("PASSWORD_HASH_METHOD")
 
 app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PW}@{POSTGRES_URL}/{POSTGRES_DB}"
 
@@ -73,7 +77,7 @@ def token_required(f):
             return jsonify({"message": "Token is missing."}), 401
 
         try:
-            data = jwt.decode(token, app.config["SECRET_KEY"], algorithms=["HS256"])
+            data = jwt.decode(token, app.config["SECRET_KEY"], algorithms=[JWT_DECODE_ALG])
             current_user = User.query.filter_by(public_id=data["public_id"]).first()
         except jwt.ExpiredSignatureError:
             return jsonify({"message": "Token has expired."}), 401
@@ -170,7 +174,7 @@ def create_user():
     if not user == None: 
         return jsonify({"message": "username already taken"})
 
-    hashed_password = generate_password_hash(data["password"], method="pbkdf2:sha256:150000", salt_length=8)
+    hashed_password = generate_password_hash(data["password"], method=PASSWORD_HASH_METHOD, salt_length=8)
     new_user = User(public_id=str(uuid.uuid4()), username=data["username"], password=hashed_password, admin=False)
     db.session.add(new_user)
     db.session.commit()
