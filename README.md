@@ -2,6 +2,7 @@
 A web application that enables users to create and study using interactive flashcards. 
 
 Visit the website here: [studycardsapp.net](https://studycardsapp.net)
+
 *Note*: the website has been temporarily shut down due to server costs! Planning on finding an alternative soon.
 
 Create an account (or log in if you already have one), and create "study sets" from your user dashboard. 
