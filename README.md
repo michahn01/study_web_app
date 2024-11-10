@@ -1,12 +1,7 @@
 # study_web_app
 A web application that enables users to create and study using interactive flashcards. 
 
-Visit the website here: [studycardsapp.net](https://studycardsapp.net)
-
-*Note*: the website has been temporarily shut down due to server costs! Planning on finding an alternative soon.
-
-Create an account (or log in if you already have one), and create "study sets" from your user dashboard. 
-Within a study set, you can add, delete, and modify digital flashcards that you can study with interactively. 
+Note: I've taken down the API and website due to server costs. However, this Git repo shows the application's source code and infrastructure back when it was active. Feel free to look around!
 
 ## The Frontend
 The frontend was built with React, and all source code files can be found in the [client](./client) directory. 
