@@ -5,7 +5,7 @@ Note: I've taken down the API and website due to server costs. However, this Git
 
 ## The Frontend
 The frontend was built with React, and all source code files can be found in the [client](./client) directory. 
-The frontent is a multi-page site with routing handled by react-router-dom.  
+The frontend is a multi-page site with routing handled by react-router-dom.  
 
 ## The Backend
 The backend API, implemented as a REST API supporting CRUD functions, was built using Flask, a lightweight Python framework. 
